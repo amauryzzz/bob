@@ -11,3 +11,5 @@ proverbes in your home directory
 use : 
 in your directory : 
 bob project_name 
+
+Feel free to put as many wise words as you want inside the proverbes folder :) 
