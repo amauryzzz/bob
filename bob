@@ -1,0 +1,72 @@
+#!/bin/bash
+#!/bin/bash/ksh
+
+# make folders
+mkdir -p src
+mkdir -p include
+cp -R /home/$USER/proverbes .
+
+# make header
+echo "/*
+** EPITECH PROJECT, $(date +"%Y")
+** $1
+** File description:
+** $(shuf -n 1 proverbes)
+*/
+
+#ifndef MAIN_H_
+#define MAIN_H_
+
+#endif /* MAIN_H_ */" > include/main.h
+
+
+# make main file
+echo -e "/*
+** EPITECH PROJECT, $(date +"%Y")
+** $1
+** File description:
+** $(shuf -n 1 proverbes)
+*/
+
+#include \"main.h\"
+
+int main(const int arc, char const * const *arv, char const * const *env)
+{
+    return 0;
+}" > src/main.c
+
+
+# make source makefile
+echo -e "##
+## EPITECH PROJECT, $(date +"%Y")
+## $1
+## File description:
+## $(shuf -n 1 proverbes)
+##
+
+CC = gcc
+CFLAGS = -W -Wall -Wextra -std=c11
+CPPFLAGS = -Iinclude/
+OUTPUTFILE = $1
+
+SRCNAMES = main
+
+SRC = \$(addsuffix .c, \$(addprefix src/, \$(SRCNAMES)))
+OBJ = \$(SRC:.c=.o)
+
+.PHONY: all clean fclean re
+
+all:    \$(OBJ)
+\t\$(CC) \$(OBJ) -o \$(OUTPUTFILE)
+
+clean:
+\t\$(RM) \$(OBJ)
+
+fclean:    clean
+\t\$(RM) \$(OUTPUTFILE)
+
+re:    fclean all" > Makefile
+
+#mv the lib inside the dir
+
+cp -R /home/$USER/lib .
